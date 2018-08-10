@@ -22,12 +22,8 @@
         <option value="{{ $category->id }}"> {{ $category->name }}</option>
        @endforeach
      </select><br>
-     <label>Select Tags</label>
-     <div class="form-group">
-      @foreach($tags as $tag)
-      <label><input type="checkbox" name="tag[]" value="{{ $tag->id }}">{{$tag->name }}</label><br>
-       @endforeach
-     </div>
+
+    
   	 <label>Content</label>
   	   <textarea class="form-control" name="content" cols="5" rows="">
   		

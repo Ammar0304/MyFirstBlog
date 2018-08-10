@@ -35,6 +35,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/tags/edit/{id}', 'TagsController@edit')->name('tag.edit');
     Route::post('/tags/update/{id}', 'TagsController@update')->name('tag.update');
    
+    // Route::get('/test', function(){
+    //     return App\User::find(1)->profile;
+    // });
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/user', 'UserController@create')->name('user.create');
+    Route::post('/createUser', 'UserController@store')->name('user.store');
+    Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
+    Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
+
 
 
 

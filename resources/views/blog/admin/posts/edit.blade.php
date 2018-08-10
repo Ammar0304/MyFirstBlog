@@ -23,7 +23,8 @@
         <option value="{{ $category->id }}"> {{ $category->name }}</option>
        @endforeach
      </select>
-     
+
+    <!--  -->
      <label>Content</label>
        <textarea class="form-control" name="content" cols="5" rows="5" >
          {{ $data->content }}

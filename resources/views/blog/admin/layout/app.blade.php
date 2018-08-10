@@ -186,14 +186,16 @@
                           </li>
                       
                       </ul>
-                         <li><a href="#formsDropdown22" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>TAGS </a>
-                      <ul id="formsDropdown22" class="collapse list-unstyled ">
-                           <li><a href="{{ route('tags') }}" aria-expanded="false" > <i class="icon-grid"></i>View TAGS </a>
+
+                         <li><a href="#formsDropdown11" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>USERS </a>
+                      <ul id="formsDropdown11" class="collapse list-unstyled ">
+                           <li><a href="{{ route('users') }}" aria-expanded="false" > <i class="icon-grid"></i>View USERS </a>
                           </li>
-                          <li><a href="{{ route('tag.create') }}" aria-expanded="false" > <i class="icon-grid"></i>Create New Tag </a>
+                          <li><a href="{{ route('user.create') }}" aria-expanded="false" > <i class="icon-grid"></i>Create New USER </a>
                           </li>
                       
                       </ul>
+                     
                
                     <li><a href="#componentsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-page"></i>Components </a>
                       <ul id="componentsDropdown" class="collapse list-unstyled ">

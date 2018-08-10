@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
-use App\Tag;
+
 
 
 use Session;
@@ -29,7 +29,7 @@ class PostContorller extends Controller
     	 return view('blog/admin/index');
     }
     public function post(){
-          $tag = Tag::all();
+         
 
     	   $cat = Category::all();
          if($cat->count() == 0){
@@ -38,18 +38,20 @@ class PostContorller extends Controller
             return redirect()->back();
          }
 
-    	 return view('blog/admin/post')->with('categories' , $cat)->with('tags', $tag );
+    	 return view('blog/admin/post')->with('categories' , $cat);
 
     }
     public function create(Request $request){
         
-         dd($request->all());      
+             
         $this->validate($request,[
         	'title' => 'required',
         	'featured' => 'required|image',
         	'content' => 'required'
+            
         ]);
 
+  
         $featured = $request->featured;
        
         $featured_new_name = time().$featured->getClientOriginalName();
@@ -58,11 +60,16 @@ class PostContorller extends Controller
         $featured->move('uploads/posts', $featured_new_name);
 
         $post = Post::create([
+
             'title' => $request->title,
             'content' => $request->content,
             'featured' => 'uploads/posts/' .$featured_new_name,
             'category_id' => $request->category_id
+
+
         ]);
+        
+        
 
         Session::flash('app_info','Post Created Successfully');
 
