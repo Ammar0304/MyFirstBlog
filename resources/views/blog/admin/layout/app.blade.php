@@ -51,6 +51,8 @@
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/themes/fa/theme.min.js"></script -->
 <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/locales/LANG.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+
 
  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   </head>
@@ -166,7 +168,12 @@
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
                     <li class="active"><a href="{{ route('index') }}"> <i class="icon-home"></i>Home </a></li>
-               
+                      <li><a href="{{ route('profile') }}" aria-expanded="false" > <i class="icon-grid"></i>My Profile </a>
+                        </li>
+                    @if(Auth::user()->admin)
+                          <li><a href="{{ route('settings') }}"> <i class="icon-padnote"></i>Settings </a>
+                     
+                      @endif
                  
                      <li><a href="#formsDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>POSTS </a>
                       <ul id="formsDropdown1" class="collapse list-unstyled ">
@@ -187,7 +194,8 @@
                       
                       </ul>
 
-                         <li><a href="#formsDropdown11" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>USERS </a>
+                     @if(Auth::user()->admin)
+                           <li><a href="#formsDropdown11" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>USERS </a>
                       <ul id="formsDropdown11" class="collapse list-unstyled ">
                            <li><a href="{{ route('users') }}" aria-expanded="false" > <i class="icon-grid"></i>View USERS </a>
                           </li>
@@ -195,6 +203,9 @@
                           </li>
                       
                       </ul>
+                     @endif
+                  
+                     
                      
                
                     <li><a href="#componentsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-page"></i>Components </a>
@@ -338,6 +349,11 @@ $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
         toastr.error("{{ Session::get('app_error') }}", "Message");
     @endif
 
+</script>
+<script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
 </script>
   </body>
 

@@ -25,9 +25,11 @@
 
     
   	 <label>Content</label>
-  	   <textarea class="form-control" name="content" cols="5" rows="">
+  	   <textarea class="summernote" name="content" cols="5" rows="5">
+       
   		
   	   </textarea><br>
+
   	<input type="submit" class="btn btn-primary">
 
   </form>

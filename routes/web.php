@@ -18,7 +18,7 @@
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/dashboard', 'PostContorller@index')->name('index');
+    Route::get('/index', 'PostContorller@index')->name('index');
     Route::get('create', 'PostContorller@post')->name('create.post');
     Route::get('/posts', 'PostContorller@posts')->name('post');
     Route::get('/post/delete/{id}', 'PostContorller@delete')->name('post.delete');
@@ -41,8 +41,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', 'UserController@index')->name('users');
     Route::get('/user', 'UserController@create')->name('user.create');
     Route::post('/createUser', 'UserController@store')->name('user.store');
-    Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
+    Route::get('/user/delete/{id}', 'UserController@destroy')->name('user.delete');
     Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
+   
+    Route::get('/make/admin/{id}', 'UserController@makeAdmin')->name('make.admin')->middleware('admin');
+    Route::get('/remove/admin/{id}', 'UserController@removeAdmin')->name('remove.admin');
+
+
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::post('/profile/update/{id}', 'ProfileController@update')->name('profile.update');
+
+    Route::get('/settings', 'SettingController@index')->name('settings')->middleware('admin');
+    Route::post('/settings/update', 'SettingController@update')->name('settings.update');
+
+    
+
 
 
 

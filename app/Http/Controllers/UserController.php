@@ -13,6 +13,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('admin');
+    }
     public function index()
     {    $user = User::all();
 
@@ -50,7 +53,8 @@ class UserController extends Controller
        $user = User::create([
           'name' => $request->name,
           'email' => $request->email,
-          'password' => bcrypt('password')
+          'password' => bcrypt('password'),
+          'admin' => 0
         ]);
 
         $avatar = $request->avatar;
@@ -58,7 +62,7 @@ class UserController extends Controller
         $avatar_new_name = time().$avatar->getClientOriginalName();
       
         $avatar->move('uploads/avatar', $avatar_new_name);
-        
+
         $profile = Profile::create([
         'user_id' => $user->id,
         'avatar' => 'uploads/avatar/'.$avatar_new_name
@@ -66,8 +70,24 @@ class UserController extends Controller
         Session::flash('app_info','User Added Successfully');
         return redirect()->back();
     }
+    public function makeAdmin($id){
+        $user = User::find($id);
+        $user->admin = 1;
+        $user->save();
+        Session::flash('app_info','Admin is Created Successfully');
+        return redirect()->back();
 
-    /**
+    }
+    
+    public function notAdmin($id){
+        $user = User::find($id);
+        $user->admin = 0;
+        $user->save();
+        Session::flash('app_info','Admin is Removed Successfully');
+        return redirect()->back();
+
+    }
+      /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -109,6 +129,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->profile->delete();
+
+        $user->delete();
+
+        Session::flash('app_warning','User Deleted Successfully');
+
+        return redirect()->back();
     }
 }

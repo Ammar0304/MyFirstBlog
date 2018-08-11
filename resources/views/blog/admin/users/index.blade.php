@@ -11,6 +11,8 @@
          <th>Image</th>
          <th>Name</th>
          <th>Permissions</th>
+         
+
          <th>Delete</th>
 
        </thead>
@@ -37,17 +39,20 @@
             </td>
              <td> {{ $user->name }} </td>
              <td>
-               <a href="{{ route('user.edit',[ 'id' => $user->id ]) }}" class="btn btn-info">
-                 <span class="glyphicon glyphicon-pencil ">
-                   Edit
-                 </span>
-               </a>
+               @if(!$user->admin)
+                <a href="{{ route('make.admin',['id' => $user->id ]) }}"><input type="button" name="" value="Make Admin" class="btn btn-success"></a>
+               @else
+                <a href="{{ route('remove.admin',['id' => $user->id ]) }}"><input type="button" name="" value="Remove Admin" class="btn btn-secondary"></a>
+               @endif
              </td>
+             
              <td>
-               <a href="{{ route('user.delete',[ 'id' => $user->id ]) }}" class="btn btn-danger">
+             @if(Auth::id() !== $user->id)
+                  <a href="{{ route('user.delete',[ 'id' => $user->id ]) }}" class="btn btn-danger">
                  <span class="glyphicon glyphicon-trash ">
                    Delete
                  </span>
+             @endif
                </a>
              </td>
                </tr>

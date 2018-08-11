@@ -26,7 +26,7 @@
 
     <!--  -->
      <label>Content</label>
-       <textarea class="form-control" name="content" cols="5" rows="5" >
+       <textarea class="summernote" name="content" cols="5" rows="5" >
          {{ $data->content }}
        </textarea><br>
     <input type="submit" class="btn btn-primary" value="Update">
