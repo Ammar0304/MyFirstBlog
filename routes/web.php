@@ -18,7 +18,7 @@
 Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/index', 'PostContorller@index')->name('index');
+    Route::get('/admin', 'PostContorller@index')->name('index');
     Route::get('create', 'PostContorller@post')->name('create.post');
     Route::get('/posts', 'PostContorller@posts')->name('post');
     Route::get('/post/delete/{id}', 'PostContorller@delete')->name('post.delete');
@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 });
+Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/index', 'FrontEndController@index')->name('index');
 
 
 Route::get('category', 'ControlCategory@create')->name('category.create');

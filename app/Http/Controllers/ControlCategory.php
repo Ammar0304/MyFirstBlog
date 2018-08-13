@@ -8,7 +8,10 @@ use Session;
 class ControlCategory extends Controller
 {   
 
-	
+	  public function __construct(){
+        $this->middleware('admin');
+    }
+
 	public function index(){
         $data = Category::all();
           
@@ -27,6 +30,7 @@ class ControlCategory extends Controller
     	$category = new Category;
     	$category->name = $request->name;
     	$category->save();
+      Session::flash('app_info','Category Created Succesfully');
     	return redirect()->back();
     }
 

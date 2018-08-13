@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Profile;
+use App\Profile;
 use Auth;
 use Session;
 class ProfileController extends Controller
@@ -13,6 +13,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public function __construct(){
+        $this->middleware('admin');
+    }
+
+
     public function index()
     {
         return view('blog/admin/users/profile')->with('user', Auth::user());

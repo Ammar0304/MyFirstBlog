@@ -32,7 +32,7 @@
             <td>
               @if(isset($user->profile->avatar))
 
-              <img src="{{ asset('').$user->profile->avatar }}" alt="" width="100px" height="100px" >
+              <img src="{{ $user->profile->avatar }}" alt="" width="100px" height="100px" >
               @else
               <h3>No Image</h3>
               @endif
