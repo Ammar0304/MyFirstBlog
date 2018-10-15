@@ -20,12 +20,12 @@ class FrontEndController extends Controller
     	->with('second_post',Post::orderBy('created_at','desc')->skip(1)->take(1)->get()->first())
     	->with('third_post',Post::orderBy('created_at','desc')->skip(2)->take(1)->get()->first())
         ->with('fourth_post',Post::orderBy('created_at','desc')->skip(3)->take(1)->get()->first())
-    	->with('cat1' , Category::find(2))
-        ->with('cat2' , Category::find(3))
-        ->with('cat3' , Category::find(4))
-        ->with('cat4' , Category::find(5))
-        ->with('cat5' , Category::find(6))        
-    	->with('cat6',Category::find(7));
+    	->with('cat1' , Category::find(1))
+        ->with('cat2' , Category::find(2))
+        ->with('cat3' , Category::find(3))
+        ->with('cat4' , Category::find(4))
+        ->with('cat5' , Category::find(5))   ;     
+   
           
     }
 }
